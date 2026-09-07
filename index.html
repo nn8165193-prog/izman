@@ -162,7 +162,7 @@ function renderQuestion(){
     </div>
     <div class="progress"><div class="fill" style="width:${Math.max(0,Math.min(100,score))}%"></div></div>
     <div class="qnum">[ QUESTION ${index+1} ]</div>
-    <div class="question">${q[0]}</div>
+    <div class="question">${escapeHtml(q[0])}</div>
     <div class="answers">${q[1].map((a,i)=>`<button onclick="answer(${i})">${String.fromCharCode(65+i)}. ${escapeHtml(a)}</button>`).join("")}</div>
     <div class="feedback" id="feedback"></div>
     <button class="next" id="next" onclick="nextQuestion()">[ SOAL BERIKUTNYA → ]</button>
