@@ -182,94 +182,114 @@
 
   form.entri{
     border: 1px solid var(--rule-strong);
-    border-radius: 6px;
-    padding: 18px;
+    border-radius: 12px;
+    padding: 20px;
     margin-bottom: 34px;
     background: var(--paper-edge);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
   }
   form.entri h2{
     font-family:'JetBrains Mono', monospace;
     font-weight:600;
     font-size:1.05rem;
-    margin: 0 0 14px;
+    margin: 0 0 16px;
     color: var(--accent);
   }
 
   .baris-form{
     display:grid;
     grid-template-columns: 1fr 2fr 1fr;
-    gap: 12px;
-    margin-bottom: 12px;
+    gap: 14px;
+    margin-bottom: 16px;
     min-width: 0;
   }
 
+  .baris-jam-jenis{
+    grid-template-columns: 1fr 1.4fr;
+    align-items: end;
+  }
+
   @media (max-width: 560px){
-    .baris-form{ grid-template-columns: 1fr; }
+    .baris-form{ grid-template-columns: 1fr; gap: 16px; }
+    .baris-jam-jenis{ grid-template-columns: 1fr; }
     .ringkasan{ grid-template-columns: 1fr; }
+    .tambah-btn{ width: 100%; }
   }
 
   label{
     display:block;
     font-size:0.75rem;
     color: var(--ink-soft);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    letter-spacing: 0.2px;
   }
 
   input[type=text], input[type=number], input[type=date], input[type=time]{
     width:100%;
     max-width: 100%;
     font-family:'JetBrains Mono', monospace;
-    font-size:0.9rem;
-    padding: 8px 9px;
+    font-size:0.95rem;
+    padding: 12px 13px;
     border: 1px solid var(--rule-strong);
-    border-radius: 4px;
+    border-radius: 8px;
     background: var(--paper);
     color: var(--ink);
+    transition: border-color 0.15s ease;
   }
   input::placeholder{ color: var(--ink-soft); opacity: 0.7; }
   input:focus{
-    outline: 2px solid var(--accent);
-    outline-offset:1px;
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(94,234,212,0.18);
   }
   input[type=date]::-webkit-calendar-picker-indicator,
   input[type=time]::-webkit-calendar-picker-indicator{
     filter: invert(0.7);
+    cursor: pointer;
   }
 
   .jenis-toggle{
     display:flex;
     border: 1px solid var(--rule-strong);
-    border-radius: 4px;
+    border-radius: 8px;
     overflow:hidden;
+    height: 44px;
   }
   .jenis-toggle button{
     flex:1;
-    padding: 9px 6px;
+    padding: 0 6px;
     background: var(--paper);
     border:none;
     font-family:'Inter', sans-serif;
+    font-weight: 500;
     font-size:0.85rem;
     cursor:pointer;
     color: var(--ink-soft);
     border-right: 1px solid var(--rule-strong);
+    transition: background 0.15s ease, color 0.15s ease;
   }
   .jenis-toggle button:last-child{ border-right:none; }
-  .jenis-toggle button.aktif.masuk{ background: var(--credit); color:#08170f; }
-  .jenis-toggle button.aktif.keluar{ background: var(--debit); color:#1a0505; }
+  .jenis-toggle button.aktif.masuk{ background: var(--credit); color:#08170f; font-weight:600; }
+  .jenis-toggle button.aktif.keluar{ background: var(--debit); color:#1a0505; font-weight:600; }
+
+  .baris-submit{
+    margin-top: 4px;
+  }
 
   .tambah-btn{
-    margin-top: 6px;
-    padding: 10px 20px;
+    padding: 13px 20px;
     background: var(--accent);
     color: #08171a;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     font-family:'JetBrains Mono', monospace;
-    font-weight:600;
-    font-size:0.9rem;
+    font-weight:700;
+    font-size:0.92rem;
     cursor:pointer;
+    transition: opacity 0.15s ease, transform 0.1s ease;
   }
-  .tambah-btn:hover{ opacity: 0.85; }
+  .tambah-btn:hover{ opacity: 0.88; }
+  .tambah-btn:active{ transform: scale(0.98); }
   .tambah-btn:disabled{ opacity:0.5; cursor:default; }
 
   .riwayat h2{
@@ -525,7 +545,7 @@
           <input type="text" inputmode="numeric" id="inputJumlah" placeholder="0" required>
         </div>
       </div>
-      <div class="baris-form" style="grid-template-columns: 140px 200px 1fr;">
+      <div class="baris-form baris-jam-jenis">
         <div>
           <label for="inputJam">Jam</label>
           <input type="time" id="inputJam" required>
@@ -537,9 +557,9 @@
             <button type="button" id="btnKeluar" class="keluar">Pengeluaran</button>
           </div>
         </div>
-        <div style="display:flex; align-items:flex-end;">
-          <button type="submit" class="tambah-btn">Tambah catatan</button>
-        </div>
+      </div>
+      <div class="baris-submit">
+        <button type="submit" class="tambah-btn">Tambah catatan</button>
       </div>
     </form>
 
